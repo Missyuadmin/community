@@ -1,4 +1,4 @@
-package com.spring.boot.provider;
+package com.spring.boot.Provider;
 
 import com.alibaba.fastjson.JSON;
 import com.spring.boot.Dto.AccessTokenDTO;
