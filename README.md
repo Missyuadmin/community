@@ -6,6 +6,10 @@
 ## bootstrap
 [中文官网](https://v3.bootcss.com/components/#navbar)
 
+## flyway
+执行命令:mvn flyway:migrate
+
+
 ## sql脚本
 ```sql
 create table USER

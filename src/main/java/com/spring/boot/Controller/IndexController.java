@@ -1,6 +1,6 @@
 package com.spring.boot.Controller;
 
-import com.spring.boot.Mapper.Usermapper;
+import com.spring.boot.Mapper.UserMapper;
 import com.spring.boot.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController {
     @Autowired
-    private Usermapper usermapper;
+    private UserMapper usermapper;
 
     @GetMapping("/")
     public String index(HttpServletRequest request){

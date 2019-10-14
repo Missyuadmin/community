@@ -2,7 +2,7 @@ package com.spring.boot.Controller;
 
 import com.spring.boot.Dto.AccessTokenDTO;
 import com.spring.boot.Dto.GithubUser;
-import com.spring.boot.Mapper.Usermapper;
+import com.spring.boot.Mapper.UserMapper;
 import com.spring.boot.Model.User;
 import com.spring.boot.Provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
 
     @Autowired
-    private Usermapper usermapper;
+    private UserMapper usermapper;
 
     @Value("${github.client.id}")
     private String clientId;
