@@ -2,9 +2,9 @@ package com.spring.boot.Controller;
 
 import com.spring.boot.Dto.AccessTokenDTO;
 import com.spring.boot.Dto.GithubUser;
-import com.spring.boot.Mapper.UserMapper;
 import com.spring.boot.Model.User;
 import com.spring.boot.Provider.GithubProvider;
+import com.spring.boot.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,8 +22,9 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
 
+
     @Autowired
-    private UserMapper usermapper;
+    private UserService userService;
 
     @Value("${github.client.id}")
     private String clientId;
@@ -52,15 +53,23 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUser.getAvatarUrl());
-            usermapper.insert(user);
+            userService.createOrUpdate(user);
             response.addCookie(new Cookie("token",token));
             return "redirect:/";
         }else{
             //登录失败
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response){
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }

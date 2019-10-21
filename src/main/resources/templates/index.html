@@ -49,7 +49,7 @@
                         </a>
                     </li>
 
-                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active' : ''">
+                    <li th:each="page : ${pagination.pages}" th:class="${pagination.page == page}? 'active' : ''" th:if="${page!=0}">
                         <a th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
                     <!--下一页箭头-->
